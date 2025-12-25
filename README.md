@@ -138,7 +138,7 @@ If you work with Linux servers, this repository is mandatory learning.
 
 Clone the repository
 
-git clone https://github.com/your-username/100-days-of-bash-devops.git
+git clone https://github.com/SanghaviAbhi/100-days-of-bash-devops.git
 
 
 Move into a specific day
