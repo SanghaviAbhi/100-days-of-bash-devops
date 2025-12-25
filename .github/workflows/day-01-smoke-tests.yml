@@ -1,0 +1,33 @@
+name: Day 01 smoke tests
+
+on:
+  push:
+    paths:
+      - 'day-01/**'
+  pull_request:
+    paths:
+      - 'day-01/**'
+
+jobs:
+  smoke-tests:
+    name: Run Day 01 smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bash coreutils procps gawk
+
+      - name: Make scripts executable
+        run: |
+          chmod +x day-01/script.sh || true
+          chmod +x day-01/test_smoke.sh || true
+
+      - name: Run smoke tests
+        run: |
+          set -euo pipefail
+          ./day-01/test_smoke.sh
+        timeout-minutes: 10

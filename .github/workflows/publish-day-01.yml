@@ -1,0 +1,25 @@
+name: Publish Day 01 to gh-pages
+
+on:
+  push:
+    paths:
+      - 'day-01/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare public dir
+        run: |
+          rm -rf public || true
+          mkdir -p public
+          cp -v day-01/day1.html public/index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

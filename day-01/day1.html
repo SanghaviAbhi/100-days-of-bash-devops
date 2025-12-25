@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <article>
+    <h1>Day 1: Bash Shell Scripting for DevOps — Complete Beginner to Practical Guide</h1>
+    <p>This is Day 1 of the “100 Days of Bash Shell Scripting for DevOps” series</p>
+
+    <h2>Introduction: Why Every DevOps Engineer Must Learn Bash</h2>
+
+    <p>In the DevOps world, tools change frequently — Docker, Kubernetes, Jenkins, Terraform, cloud providers — but Bash scripting remains constant.</p>
+
+    <p>If you work with:</p>
+    <ul>
+      <li>Linux servers</li>
+      <li>Cloud virtual machines</li>
+      <li>CI/CD pipelines</li>
+      <li>Monitoring and backups</li>
+    </ul>
+
+    <p>You are already dependent on Bash, whether you realize it or not.</p>
+
+    <h2>What Is Bash Shell?</h2>
+
+    <p>Bash (Bourne Again Shell) is a command-line interpreter used in Linux and Unix-based systems.</p>
+
+    <p>It allows you to:</p>
+    <ul>
+      <li>Execute system commands</li>
+      <li>Chain commands together</li>
+      <li>Write scripts to automate tasks</li>
+      <li>Control system behavior logically</li>
+    </ul>
+
+    <h2>Understanding Your First Bash Script</h2>
+
+    <pre><code>#!/bin/bash
+echo "Welcome to Bash Shell Scripting for DevOps"</code></pre>
+
+    <h3>Explanation</h3>
+    <p><code>#!/bin/bash</code> → Shebang — Tells the operating system to execute the script using Bash</p>
+    <p><code>echo</code> → Prints output to the terminal</p>
+
+    <h3>How to Run a Bash Script</h3>
+    <pre><code>chmod +x script.sh
+./script.sh</code></pre>
+
+    <h2>Bash Variables: Making Scripts Dynamic</h2>
+
+    <pre><code>#!/bin/bash
+
+ROLE="DevOps Engineer"
+echo "Welcome $ROLE"</code></pre>
+
+    <h2>Environment Variables (Very Important)</h2>
+    <pre><code>echo "Current User: $USER"
+echo "Home Directory: $HOME"
+echo "System Path: $PATH"</code></pre>
+
+    <h2>Taking User Input in Bash (Interactive Automation)</h2>
+    <pre><code>#!/bin/bash
+
+echo "Enter server name:"
+read SERVER_NAME
+
+echo "You selected server: $SERVER_NAME"</code></pre>
+
+    <h2>Conditional Logic in Bash (Decision Making)</h2>
+    <pre><code>#!/bin/bash
+
+echo "Enter CPU usage percentage:"
+read CPU
+
+if [ "$CPU" -gt 80 ]; then
+  echo "Warning: High CPU usage"
+else
+  echo "CPU usage is normal"
+fi</code></pre>
+
+    <h2>Real-Time Practical Example: Disk Usage Monitoring</h2>
+    <pre><code>#!/bin/bash
+
+DISK_USAGE=$(df / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+if [ "$DISK_USAGE" -ge 85 ]; then
+  echo "CRITICAL: Disk usage is ${DISK_USAGE}%"
+else
+  echo "Disk usage is healthy: ${DISK_USAGE}%"
+fi</code></pre>
+
+    <h2>Combined DevOps Starter Script (Day 1 Practical)</h2>
+    <pre><code>#!/bin/bash
+
+echo "Enter environment (dev/stage/prod):"
+read ENV
+
+echo "Running checks for $ENV environment"
+echo "User: $USER"
+echo "Host: $(hostname)"
+
+DISK=$(df / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+if [ "$DISK" -ge 80 ]; then
+  echo "Warning: Disk usage high ($DISK%)"
+else
+  echo "Disk usage normal ($DISK%)"
+fi</code></pre>
+
+    <h2>Common Beginner Mistakes (Avoid These)</h2>
+    <ul>
+      <li>Hardcoding values instead of variables</li>
+      <li>No validation before destructive commands</li>
+      <li>Running scripts without understanding permissions</li>
+      <li>No logging or output clarity</li>
+    </ul>
+
+    <h2>Professional Bash scripts are</h2>
+    <ul>
+      <li>Predictable</li>
+      <li>Safe</li>
+      <li>Readable</li>
+      <li>Reusable</li>
+    </ul>
+
+    <p>Files for this lesson are available in the repository under <code>day-01/</code>. Try the reference script and experiment with the exercises in the <code>README.MD</code>.</p>
+  </article>
+</body>
+</html>
